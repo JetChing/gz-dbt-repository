@@ -1,5 +1,4 @@
 version: 2
-
 sources:
   - name: gz_raw_data
     database: corded-imagery-246406
