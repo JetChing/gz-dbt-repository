@@ -8,10 +8,46 @@ sources:
     tables:
       - name: product
         identifier: raw_gz_product
-        description: product id and purchase price
+        description: every product id and its purchase price
+        columns:
+          - name: products_id
+            description: id for each product
+            tests:
+              - not_null
+              - unique
+          - name: purchSE_PRICE
+            description: price for each product
       - name: sales
         identifier: raw_gz_sales
         description: sales of products
+        loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+        freshness:
+          warn_after: 
+            count: 90
+            period: day
+        columns: 
+          - name: date_date
+            description: date of customer purchase
+          - name: orders_id
+            description: order id associated with the purchase
+          - name: pdt_id
+            description: product_id associated with each order id
+          - name: revenue
+            description: revenue generate from each purchase
+          - name: quantity
+            description: amount purchase of product for each order
       - name: ship
         identifier: raw_gz_ship
         description: shipping costs
+        columns: 
+          - name: orders_id
+            description: order id associated with customer purchase
+            tests:
+              - not_null
+              - unique
+          - name: shipping_fee
+            description: shipping fee
+          - name: logCost
+            description: costs associated with logistics costs
+          - name: ship_cost
+            description: costs associated with shipping
