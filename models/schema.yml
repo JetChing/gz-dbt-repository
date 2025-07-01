@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: gz_raw_data
+    database: corded-imagery-246406
+    schema: gz_raw_data 
+    description: Greenweez raw data
+    tables:
+      - name: product
+        identifier: raw_gz_product
+        description: product id and purchase price
+      - name: sales
+        identifier: raw_gz_sales
+        description: sales of products
+      - name: ship
+        identifier: raw_gz_ship
+        description: shipping costs
